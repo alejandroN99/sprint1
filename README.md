@@ -1,1 +1,3 @@
-# sprint1
+Sprint 1 Nodejs, 
+IT academy, 
+Alumno: Alejandro Rodriguez.
