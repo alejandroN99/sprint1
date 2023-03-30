@@ -5,9 +5,9 @@ const array = [];
 
 const x = function numbers() {
     let result = "";
-    let i = 0;
-    for (i = 0; i < 10; i++) {
-        if (i == 9) {
+
+    for ( let i = 0; i < 10; i++) {
+        if (i === 9) {
             result += i;
         } else {
             result += i + "-";
@@ -20,8 +20,8 @@ const x = function numbers() {
 
 function travelArray() {
     let result = "";
-    let i = 0;
-    for (i = 0; i < 10; i++) {
+    
+    for (let i = 0; i < 10; i++) {
         array.push(x);
         result += array[i]() + "\n";
     }
