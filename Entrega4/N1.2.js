@@ -2,7 +2,7 @@
  * després de 2 segons de la seva invocació. */
 
 function twoSeconds () {
-    return new Promise ((resolve,reject) => {
+    return new Promise ((resolve) => {
         const time = setTimeout(() => {
             resolve(console.log("You have waited two seconds"));
         },2000)
