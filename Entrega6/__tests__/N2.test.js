@@ -1,39 +1,38 @@
-const {returnDouble,
-  Person,
+const {
+  returnDouble,
   createObject,
   Person2,
-  CreatePerson
 } = require("../app/N2.js")
 
 describe(" Async / Await N2 E1", () => {
-    test ("Check the result of setTimeout() with the jest fake timers", async () => {
-    //given
+  test("Check the result of setTimeout() with the jest fake timers", async () => {
+
     jest.useFakeTimers();
     const promise = returnDouble(2);
-    //when
+
     jest.runAllTimers();
-    //then
+
     await expect(promise).resolves.toBe(4);
 
-    })
+  })
 });
 
 describe("Classes & Arrow Functions - N2 E2 ", () => {
-    test('Check the calls to the constructor and method of the Person class.', () => {
-      //given
-        const PersonaMock = jest.fn(() => ({
-          sayName: jest.fn(),
-        }));
-        const persona = new PersonaMock('Joan');
-        
-        //when
-        persona.sayName();
-        
-        //then
-        expect(PersonaMock).toHaveBeenCalledTimes(1);
-        expect(PersonaMock).toHaveBeenCalledWith('Joan');
-        expect(persona.sayName).toHaveBeenCalledTimes(1);
-      });
+  test('Check the calls to the constructor and method of the Person class.', () => {
+
+    const PersonaMock = jest.fn(() => ({
+      sayName: jest.fn(() => 'Juan'),
+    }));
+    const persona = new PersonaMock('Juan');
+
+    persona.sayName();
+
+    expect(PersonaMock).toHaveBeenCalledTimes(1);
+    expect(PersonaMock).toHaveBeenCalledWith('Juan');
+    expect(persona.sayName).toHaveBeenCalledTimes(1);
+
+    expect(persona.sayName()).toEqual('Juan');
+  });
 });
 
 describe("Classes & Arrow Functions N3 E1.", () => {
@@ -42,10 +41,8 @@ describe("Classes & Arrow Functions N3 E1.", () => {
   })
   test("Check object creator function", () => {
     const createObj = createObject('Alejandro');
-    expect(createObj).toEqual(expect.objectContaining({username: "Alejandro"}))
+    expect(createObj).toEqual(expect.objectContaining({
+      username: "Alejandro"
+    }))
   })
 });
-
-
-
-

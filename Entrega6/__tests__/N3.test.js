@@ -5,40 +5,37 @@ const {
 } = require("../app/N3");
 
 
-jest.mock('../app/data.json',() => {
-    {employees = [{
-        id: 1,
-        name: 'Linux Torvalds'
-    }, {
-        id: 2,
-        name: 'Bill Gates'
-    },{
-        id: 3,
-        name: 'Jeff Bezos'
-    }],
-    salaries = [{
-        id: 1,
-        salary: 4000
-    }, {
-        id: 2,
-        salary: 1000
-    }, {
-        id: 3,
-        salary: 2000
-    }]}
-    
-});
+jest.mock('../app/data.json', () => {
+    {
+        employees = [{
+                id: 1,
+                name: 'Linux Torvalds'
+            }, {
+                id: 2,
+                name: 'Bill Gates'
+            }, {
+                id: 3,
+                name: 'Jeff Bezos'
+            }],
+            salaries = [{
+                id: 1,
+                salary: 4000
+            }, {
+                id: 2,
+                salary: 1000
+            }, {
+                id: 3,
+                salary: 2000
+            }]
+    }
 
-const fileJson = require ("../app/data.json");
+});
 
 
 describe(" Promises i Callbacks N2 E1 i Promises i Callbacks N2 E2", () => {
     test("Promise getEmployee resolve", () => {
-        // return getEmployee(1).then((value) => expect(value).toStrictEqual({
-        //     id: 1,
-        //     name: 'Linux Torvalds'
-        // }))
-        return expect(getEmployee(1)).resolves.toStrictEqual({
+
+        return expect(getEmployee(1)).resolves.toEqual({
             id: 1,
             name: 'Linux Torvalds'
         })
@@ -46,7 +43,7 @@ describe(" Promises i Callbacks N2 E1 i Promises i Callbacks N2 E2", () => {
 
     test("Promise getEmployee reject", () => {
         const value = 5;
-        return expect(getEmployee(value)).rejects.toStrictEqual(`El id ${value} introducido no existe`);
+        return expect(getEmployee(value)).rejects.toEqual(`El id ${value} introducido no existe`);
     })
 
     test("Promise getSalary resolve", () => {
@@ -54,7 +51,7 @@ describe(" Promises i Callbacks N2 E1 i Promises i Callbacks N2 E2", () => {
             id: 2,
             name: 'Bill Gates'
         };
-        return expect(getSalary(object)).resolves.toStrictEqual(1000);
+        return expect(getSalary(object)).resolves.toEqual(1000);
 
     })
 
@@ -63,33 +60,32 @@ describe(" Promises i Callbacks N2 E1 i Promises i Callbacks N2 E2", () => {
             id: 5,
             name: 'Bill Gates'
         };
-        return expect(getSalary(object)).rejects.toStrictEqual("El objecto introducido no se encuentra");
+        return expect(getSalary(object)).rejects.toEqual("El objecto introducido no se encuentra");
 
     })
 });
 
 describe("Exercici Async / Await, crea tests que forcin errors", () => {
-    test("Given the number -4 as the parameter, when we call the function using the jest fake timers, then we expect an error.",  async () => {
-        //given
+    test("Given the number -4 as the parameter, when we call the function using the jest fake timers, then we expect an error.", async () => {
         const value = -4;
-        //when
+
         jest.useFakeTimers();
         const result = returnDouble(value);
         const expectedResult = "Error, introduzca un numero positivo";
         jest.runAllTimers();
-        //then
-        await expect(result).rejects.toStrictEqual(expectedResult);
+
+        await expect(result).rejects.toEqual(expectedResult);
     })
 
-    test("Given the string as the parameter, when we call the function using the jest fake timers, then we expect an error.",  async () => {
-        //given
+    test("Given the string as the parameter, when we call the function using the jest fake timers, then we expect an error.", async () => {
+
         const value = "string";
-        //when
+
         jest.useFakeTimers();
         const result = returnDouble(value);
         const expectedResult = "Error, introduzca un numero";
         jest.runAllTimers();
-        //then
-        await expect(result).rejects.toStrictEqual(expectedResult);
+
+        await expect(result).rejects.toEqual(expectedResult);
     })
 });

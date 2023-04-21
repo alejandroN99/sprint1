@@ -2,28 +2,6 @@
  * que accedeixin a les dades d'un fitxer extern JSON. Crea tests que demostrin la correcta execució de l'exercici fent 
  * un mock del fitxer JSON. */
 
-// console.log(JSON.stringify([{
-//     id: 1,
-//     name: 'Linux Torvalds'
-// }, {
-//     id: 2,
-//     name: 'Bill Gates'
-// },{
-//     id: 3,
-//     name: 'Jeff Bezos'
-// }]));
-
-// console.log(JSON.stringify([{
-//     id: 1,
-//     salary: 4000
-// }, {
-//     id: 2,
-//     salary: 1000
-// }, {
-//     id: 3,
-//     salary: 2000
-// }]));
-
 const data = require ("./data.json")
 
 const getEmployee = (value) => {
